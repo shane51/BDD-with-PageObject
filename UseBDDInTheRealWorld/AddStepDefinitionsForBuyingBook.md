@@ -19,7 +19,7 @@ When /^I search for "(.*?)"$/ do |keyword|
 	searchKeyword=@driver.find_element :id => "twotabsearchtextbox"
 	searchKeyword.clear
 	searchKeyword.send_keys keyword
-	element=@driver.find_element :class =>"nav-submit-input"
+	element=@driver.find_element :class =>"nav-input"
 	element.click
 end
 
