@@ -1,6 +1,6 @@
 # encoding: utf-8
 Given /^I open "(.*?)"$/ do |site|
-      @driver.get site
+      openSite(site)
 end
 
 When /^I search for "(.*?)"$/ do |keyword|
@@ -16,7 +16,7 @@ And /^I open the first book$/ do
   element.click
 end
 
-And /^I add the first book to shopping cart$/ do 
+And /^I add the first book to shopping cart$/ do
   @bookTitle = @driver.find_element(:id => "productTitle").text
   element = @driver.find_element :name => "submit.add-to-cart"
   element.click
@@ -27,4 +27,8 @@ Then /^I should see the book in my shopping cart$/ do
   confirm.text.include?("1 item added to Cart")
   book = @driver.find_element(:xpath => "//div[@class=\"a-row-a-size-base word-break\"]/a")
   book.attribute("title").should == @bookTitle
+end
+
+def openSite(site)
+  @driver.get(site)
 end
