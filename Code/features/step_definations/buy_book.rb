@@ -1,14 +1,10 @@
 # encoding: utf-8
 Given /^I open "(.*?)"$/ do |site|
-      openSite(site)
+  openSite(site)
 end
 
 When /^I search for "(.*?)"$/ do |keyword|
-  searchKeyWord = @driver.find_element(:id => "twotabsearchtextbox")
-  searchKeyWord.clear
-  searchKeyWord.send_keys keyword
-  element = @driver.find_element :class => "nav-input"
-  element.click
+  searchKeyWord(keyword)
 end
 
 And /^I open the first book$/ do
@@ -31,4 +27,12 @@ end
 
 def openSite(site)
   @driver.get(site)
+end
+
+def searchKeyWord(keyword)
+  searchKeyWord = @driver.find_element(:id => "twotabsearchtextbox")
+  searchKeyWord.clear
+  searchKeyWord.send_keys keyword
+  element = @driver.find_element :class => "nav-input"
+  element.click
 end
